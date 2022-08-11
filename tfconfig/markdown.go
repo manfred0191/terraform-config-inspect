@@ -38,20 +38,20 @@ func RenderMarkdown(w io.Writer, module *Module) error {
 const markdownTemplate = `
 # Modul {{ tt .Path }}
 
-Zweck:
+## Zweck:
 
-
+HIER EINTRAGEN WAS DAS MODUL MACHT
 
 {{- if .RequiredCore}}
 
-Versionsabhängigkeiten:
+## Versionsabhängigkeiten:
 {{- range .RequiredCore }}
 * {{ tt . }}
 {{- end}}{{end}}
 
 {{- if .RequiredProviders}}
 
-Provider Anforderungen:
+## Provider Anforderungen:
 {{- range $name, $req := .RequiredProviders }}
 * **{{ $name }}{{ if $req.Source }} ({{ $req.Source | tt }}){{ end }}:** {{ if $req.VersionConstraints }}{{ commas $req.VersionConstraints | tt }}{{ else }}(any version){{ end }}
 {{- end}}{{end}}
