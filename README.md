@@ -7,11 +7,11 @@ to be broadly compatible with modules written for many different versions of
 Terraform.
 
 ```
-$ go get github.com/hashicorp/terraform-config-inspect
+$ go get github.com/manfred0191/terraform-config-inspect
 ```
 
 ```go
-import "github.com/hashicorp/terraform-config-inspect/tfconfig"
+import "github.com/manfred0191/terraform-config-inspect/tfconfig"
 
 // ...
 

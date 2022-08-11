@@ -36,25 +36,29 @@ func RenderMarkdown(w io.Writer, module *Module) error {
 }
 
 const markdownTemplate = `
-# Module {{ tt .Path }}
+# Modul {{ tt .Path }}
+
+Zweck:
+
+
 
 {{- if .RequiredCore}}
 
-Core Version Constraints:
+Versionsabhängigkeiten:
 {{- range .RequiredCore }}
 * {{ tt . }}
 {{- end}}{{end}}
 
 {{- if .RequiredProviders}}
 
-Provider Requirements:
+Provider Anforderungen:
 {{- range $name, $req := .RequiredProviders }}
 * **{{ $name }}{{ if $req.Source }} ({{ $req.Source | tt }}){{ end }}:** {{ if $req.VersionConstraints }}{{ commas $req.VersionConstraints | tt }}{{ else }}(any version){{ end }}
 {{- end}}{{end}}
 
 {{- if .Variables}}
 
-## Input Variables
+## Inputs
 {{- range .Variables }}
 * {{ tt .Name }}{{ if .Required }} (required){{else}} (default {{ json .Default | tt }}){{end}}
 {{- if .Description}}: {{ .Description }}{{ end }}
@@ -62,35 +66,35 @@ Provider Requirements:
 
 {{- if .Outputs}}
 
-## Output Values
+## Outputs
 {{- range .Outputs }}
 * {{ tt .Name }}{{ if .Description}}: {{ .Description }}{{ end }}
 {{- end}}{{end}}
 
 {{- if .ManagedResources}}
 
-## Managed Resources
+## Managed Ressourcen
 {{- range .ManagedResources }}
 * {{ printf "%s.%s" .Type .Name | tt }} from {{ tt .Provider.Name }}
 {{- end}}{{end}}
 
 {{- if .DataResources}}
 
-## Data Resources
+## Data Ressourcen
 {{- range .DataResources }}
 * {{ printf "data.%s.%s" .Type .Name | tt }} from {{ tt .Provider.Name }}
 {{- end}}{{end}}
 
 {{- if .ModuleCalls}}
 
-## Child Modules
+## Verwendete Module
 {{- range .ModuleCalls }}
 * {{ tt .Name }} from {{ tt .Source }}{{ if .Version }} ({{ tt .Version }}){{ end }}
 {{- end}}{{end}}
 
 {{- if .Diagnostics}}
 
-## Problems
+## Probleme
 {{- range .Diagnostics }}
 
 ## {{ severity .Severity }}{{ .Summary }}{{ if .Pos }}
