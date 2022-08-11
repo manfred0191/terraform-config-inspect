@@ -42,7 +42,7 @@ const markdownTemplate = `
 
 HIER EINTRAGEN WAS DAS MODUL MACHT
 
-ACHTUNG: BEI DEN INPUTVARIABLEN PRÜFEN, OB `required` richtig gesetzt ist !!!
+ACHTUNG: BEI DEN INPUTVARIABLEN PRÜFEN, OB required und optional richtig gesetzt ist !!!
 
 DIESE EINTRÄGE IM ANSCHLUSS AN DIE NACHBEARBEITUNG ENTFERNEN !!!
 
